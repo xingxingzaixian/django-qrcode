@@ -2,13 +2,14 @@ import os
 import time
 import qrcode
 from PIL import Image
+from MyQR import myqr
 from QRCode.settings import BASE_DIR
 
 
 def gen_qrcode(text):
     # 创建qrcode对象
     qr = qrcode.QRCode(
-        version=1,
+        version=2,
         error_correction=qrcode.constants.ERROR_CORRECT_Q,
         box_size=10,
         border=2,
@@ -46,4 +47,19 @@ def gen_qrcode(text):
 
     return qr_path
 
-gen_qrcode('我就是百度')
+
+def gen_gif_qrcode(text):
+    pic_path = os.path.join(BASE_DIR, 'static/images/background.gif')
+    save_name = '%s.gif' % time.time()
+    myqr.run(
+        words=text,
+        version=1,
+        level='H',
+        picture=pic_path,
+        colorized=True,
+        contrast=1.0,
+        brightness=1.0,
+        save_name=save_name,
+        save_dir=os.path.join(BASE_DIR, 'static/imgcard')
+    )
+    return 'static/imgcard/%s' % save_name
