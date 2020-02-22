@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}二维码生成{% endblock %}
+
+{% block content %}
+<div class="top">
+    <div class="t_header">
+        <div class="t_desc">网址生成二维码</div>
+    </div>
+</div>
+
+<div class="banner">
+    <div class="b_box">
+        <div class="b_info">
+            <p>
+                <span>网址链接：</span>
+                <input type="text" class="b_txt" id="url"/>
+            </p>
+            <p class="b_login">
+                <a href="#" id="b_btn">生成二维码</a>
+            </p>
+        </div>
+
+        <div class="b_qrcode">
+            {% csrf_token %}
+        </div>
+    </div>
+</div>
+{% endblock %}
